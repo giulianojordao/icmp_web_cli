@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>ICMPWEB — Página transportada por ping</title>
+  <style>
+    :root{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#f6f9ff;background:#0c1220}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 80% 10%,#193c5b 0%,transparent 52%),#0c1220;display:grid;place-items:center;padding:24px}
+    main{width:min(780px,100%);padding:clamp(25px,6vw,60px);border:1px solid #2f475c;background:#121e30e8;border-radius:26px;box-shadow:0 22px 85px #0006}
+    .eyebrow{color:#5ce5cd;text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:800;display:flex;align-items:center;gap:11px}
+    .dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:#5ce5cd;box-shadow:0 0 18px #5ce5cd}
+    h1{font-size:clamp(2.6rem,7vw,5rem);letter-spacing:-.055em;line-height:1.04;margin:27px 0 18px}h1 span{color:#5ce5cd}
+    p{color:#b9cad8;line-height:1.75;font-size:1.05rem;max-width:610px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:36px}
+    .metric{border:1px solid #314359;background:#1d2d41;padding:19px;border-radius:15px}
+    .metric b{display:block;font-size:1.08rem;margin-bottom:9px;color:#fff}.metric small{color:#9fb7c8;font-size:.78rem}
+    .console{margin-top:26px;border-radius:15px;background:#08111c;padding:22px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.87rem;color:#73e2d6;overflow-wrap:anywhere}
+    .console div+div{margin-top:10px}.dim{color:#8499ae}footer{padding-top:26px;font-size:.84rem;color:#90a5b7}
+    @media(max-width:560px){.grid{grid-template-columns:1fr}.metric{padding:13px}}
+  </style>
+</head>
+<body>
+<main>
+  <div class="eyebrow"><span class="dot"></span> ICMP Application Layer / Proof of Concept</div>
+  <h1>Uma página.<br><span>Zero HTTP.</span></h1>
+  <p>Este documento chegou até você dividido em mensagens <strong>ICMP Echo Reply</strong>. Um cliente Python recuperou os blocos via protocolo de ping, remontou o arquivo e abriu esta página localmente, sem servidor HTTP.</p>
+  <section class="grid" aria-label="Características da transferência">
+    <div class="metric"><b>ICMP Echo</b><small>Transporte</small></div>
+    <div class="metric"><b>Nenhuma porta</b><small>TCP / UDP</small></div>
+    <div class="metric"><b>768 bytes</b><small>Blocos de conteúdo</small></div>
+  </section>
+  <div class="console">
+    <div><span class="dim">$</span> sudo python3 client.py 127.0.0.1 --open</div>
+    <div><span class="dim">&gt;</span> REQUEST: ICMP Type 8 / Echo Request</div>
+    <div><span class="dim">&lt;</span> RESPONSE: ICMP Type 0 / Echo Reply</div>
+    <div><span class="dim">✓</span> HTML reconstruído localmente</div>
+  </div>
+  <footer>Protótipo de aplicação sobre ICMP. Sem HTTP, sem WebSocket, sem portas de aplicação.</footer>
+</main>
+</body>
+</html>
